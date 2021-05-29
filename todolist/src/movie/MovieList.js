@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import fetchMovie from './movieSlice';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovie, moviesResult } from './movieSlice';
 import MovieCard from './MovieCard';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,23 +24,36 @@ const useStyles = makeStyles((theme) => ({
 
 const MovieList = () => {
     const classes = useStyles();
+
     const dispatch = useDispatch();
-    const movieList = useSelector(moviesResult);
+
+    const movieList = useSelector((state) => state.MovieSlice);
 
     useEffect(() => {
-        dispatch(movieList());
+        dispatch(fetchMovie());
     }, []);
 
-    console.log(MovieList);
+    console.log(movieList);
 
-    const list = movieList.map((movie, idx) => <MovieCard key={idx} {...movie} />);
+    alert('무비 리스트 실행되나요');
+    // const list = movieList.map((movie, idx) => {
+    //     return (
+    //         <>
+    //             <tr key={idx}>
+    //                 <td>{movie}</td>
+    //                 <td>{movie}</td>
+    //                 <td>{movie}</td>
+    //                 <td>{movie}</td>
+    //                 <td>{movie}</td>
+    //                 <td>{movie}</td>
+    //                 <td>{movie}</td>
+    //                 <td>{movie}</td>
+    //             </tr>
+    //         </>
+    //     );
+    // });
 
-    return (
-        <>
-            <div>
-                <ul>{list}</ul>
-            </div>
-        </>
-    );
+    return <div>{/* <ul>{list}</ul> */}</div>;
 };
+
 export default MovieList;

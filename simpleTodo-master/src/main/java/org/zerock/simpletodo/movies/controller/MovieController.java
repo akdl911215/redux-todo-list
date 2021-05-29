@@ -16,9 +16,12 @@ public class MovieController {
 
     private String beforeResult;
 
+    // @Mapping 에서는 produces와 conumes이 존재
+    // 이것드은 JSON을 사용하기 위한 것.
     @GetMapping(value = "/getMovies", produces = "application/json")
     @ResponseBody
     public String getData() throws Exception {
+        log.info("도착햇나요");
 
         if(beforeResult != null){
             return beforeResult;
