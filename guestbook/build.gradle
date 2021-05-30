@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'war'
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'org.zerock'
@@ -20,6 +21,9 @@ repositories {
 }
 
 dependencies {
+    implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '4.4.0'
+    implementation group: 'com.querydsl', name: 'querydsl-apt', version: '4.4.0'
+
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.5.0'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.5.0'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.5.0'
@@ -32,10 +36,38 @@ dependencies {
 
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.25'
     implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time', version: '3.0.3.RELEASE'
-
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 //    compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time'
 }
 
 test {
     useJUnitPlatform()
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/" // plugin 저장소
+    }
+}
+
+
+def querydslDir = "$buildDir/generated/querydsl" // QClass 생성 위치
+
+
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+
+sourceSets {
+    main.java.srcDir querydslDir
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+
+compileQuerydsl{
+    options.annotationProcessorPath = configurations.querydsl
 }

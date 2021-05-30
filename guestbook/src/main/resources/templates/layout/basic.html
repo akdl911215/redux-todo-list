@@ -7,20 +7,25 @@
   <title>Simple Sidebar - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
-  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/vendor/bootstrap/css/bootstrap.css}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link th:href="@{/css/simple-sidebar.css}" rel="stylesheet">
 
   <!-- Bootstrap core CSS -->
-  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/vendor/bootstrap/css/bootstrap.css}" rel="stylesheet">
 
   <!-- Custom style for this template -->
   <link th:href="@{/css/simple-sidebar.css}" rel="stylesheet">
 
   <!-- Bootstrap core JavaScript -->
-  <script th:src="@{/vender/jquery/jquery/min.js}"></script>
-  <script th:src="@{/venderbootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/vender/jquery/jquery.js}"></script>
+  <script th:src="@{/venderbootstrap/js/bootstrap.bundle.js}"></script>
+
+  <div class="container-fluid">
+    <th:block th:replace = "${content}"></th:block>
+  </div>
+
 </head>
 <body>
 
@@ -28,6 +33,3 @@
 </th:block>
 </html>
 
-<div class="container-fluid">
-  <th:block th:replace = "${content}"></th:block>
-</div>
