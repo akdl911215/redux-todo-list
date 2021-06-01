@@ -1,6 +1,7 @@
 package org.zerock.guestbook.guestbook.domain;
 
 import lombok.*;
+import org.zerock.guestbook.common.domain.BaseEntity;
 
 import javax.persistence.*;
 

@@ -4126,7 +4126,7 @@
        * @private
        * @type {Object}
        * @deprecated since version 1.8
-       * @member Utils
+       * @org.zerock.guestbook.member Utils
        * @memberof Popper
        */
 
