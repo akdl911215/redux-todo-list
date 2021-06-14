@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchPage } from './todoService';
 
 const initState = {
@@ -36,4 +36,24 @@ const TodoWrapper = () => {
 
         setCri(...cri);
     };
+
+    const clearCri = () => {
+        setCri({ ...initState });
+    };
+
+    useEffect(() => {
+        loadPage();
+    }, [cri]);
+
+    // callback 은 버블링을 위한 사용
+    return (
+        <div>
+            <TodoInput callback={clearCri}></TodoInput>
+            <TodoSearch {...cri} clearCri={clearCri} changCri={changeCri}></TodoSearch>
+            <TodoList {...result} moveRead={moveRead}></TodoList>
+            <PageList {...result} movePage={movePage}></PageList>
+            <TodoRead tno={current} clearCri={clearCri}></TodoRead>
+        </div>
+    );
 };
+export default TodoWrapper
