@@ -1,4 +1,3 @@
-import { CropDinTwoTone } from '@material-ui/icons';
 import axios from 'axios';
 
 const baseURL = 'http://localhost:8080/todo/';
@@ -20,6 +19,12 @@ export const registerTodo = async (todo) => {
 
     return response.data;
 };
+
+export const register = async (todo) => {
+    const response = await axios.post(baseURL, todo)
+
+    return response.data
+}
 
 export const remove = async (tno) => {
     const response = await axios.delete(baseURL, tno, { data: { tno: tno } });

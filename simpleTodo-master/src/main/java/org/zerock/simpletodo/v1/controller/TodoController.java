@@ -75,8 +75,7 @@ public class TodoController {
     @GetMapping("/pages")
     public ResponseEntity<PageResultDTO<TodoDTO,Todo>> getList(int page){
         log.info("====================");
-        log.info("리스트작동중.."
-        );
+        log.info("리스트작동중..");
 
         return new ResponseEntity<>(service.getPageList(page), HttpStatus.OK);
     }

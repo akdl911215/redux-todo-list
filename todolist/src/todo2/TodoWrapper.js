@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { fetchPage } from './todoService';
+import TodoList from './TodoList';
+import PageList from '../component/PageList';
+import TodoSearch from './TodoSearch';
+import TodoInput from './TodoInput';
+import TodoRead from './TodoRead';
 
 const initState = {
     page: 1,
@@ -34,7 +39,7 @@ const TodoWrapper = () => {
 
         console.log(cri);
 
-        setCri(...cri);
+        setCri({ ...cri });
     };
 
     const clearCri = () => {
@@ -49,11 +54,11 @@ const TodoWrapper = () => {
     return (
         <div>
             <TodoInput callback={clearCri}></TodoInput>
-            <TodoSearch {...cri} clearCri={clearCri} changCri={changeCri}></TodoSearch>
+            <TodoSearch {...cri} clearCri={clearCri} changeCri={changeCri}></TodoSearch>
             <TodoList {...result} moveRead={moveRead}></TodoList>
             <PageList {...result} movePage={movePage}></PageList>
             <TodoRead tno={current} clearCri={clearCri}></TodoRead>
         </div>
     );
 };
-export default TodoWrapper
+export default TodoWrapper;
